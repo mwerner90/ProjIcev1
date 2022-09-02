@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_hide_fields_wizard">
+        <field name="name">hide.fields.wizard</field>
+        <field name="model">hide.fields.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="primary_phone" readonly="1" force_save="1"/>
+                        <field name="secondary_phone" readonly="1" force_save="1"/>
+                        <field name="other_phone" readonly="1" force_save="1"/>
+                    </group>
+                    <group>
+                        <field name="primary_email" readonly="1" force_save="1"/>
+                        <field name="secondary_email" readonly="1" force_save="1"/>
+                        <field name="other_email" readonly="1" force_save="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button special="cancel" data-hotkey="z"
+                        string="Cancel" type="object" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

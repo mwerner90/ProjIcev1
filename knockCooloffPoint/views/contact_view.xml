@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_inherit_knock_cooloff" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.knock.cooloff</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">55</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_primary_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_secondary_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_other_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_primary_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_secondary_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_other_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="before">
+                <field name="z_time" readonly="1" force_save="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="open_contect_detail_wiz" 
+                        class="btn btn-primary" string="View Details" type="object"/>
+                </header>
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="knock_history" string="Knock History" invisible="0">
+                    <field name="knock_history_ids">
+                        <tree create="false" delete="false">
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="history_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_users_form_add_cool_knock_days" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.knock.days</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="after">
+                <page string="Other" name="other">
+                    <group>
+                        <group>
+                            <field name="cool_off_days"/>
+                            <field name="cooloff_start_day" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="available_credit" readonly="1" force_save="1"/>
+                            <field name="monthaly_credit"  readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_form_inherit_visible_custom_knock_group" model="ir.ui.view">
+        <field name="name">res.user.form.inherit.visibile.konck_group</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="priority">99</field>
+        <field name="groups_id" eval="[(6, 0, [ref('knockCooloffPoint.group_allow_knock')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='available_credit']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='monthaly_credit']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_form_inherit_visible_custom_field" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.visibile.custom_field</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="groups_id" eval="[(6, 0, [ref('knockCooloffPoint.group_allow_knock')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_primary_phone']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_secondary_phone']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_other_phone']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_primary_email']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_secondary_email']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_other_email']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='z_time']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

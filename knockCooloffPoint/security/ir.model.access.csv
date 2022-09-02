@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+knockCooloffPoint.access_hide_fields_wizard,access_hide_fields_wizard,knockCooloffPoint.model_hide_fields_wizard,base.group_user,1,1,1,1
+knockCooloffPoint.access_knock_history,access_knock_history,knockCooloffPoint.model_knock_history,base.group_user,1,1,1,1
